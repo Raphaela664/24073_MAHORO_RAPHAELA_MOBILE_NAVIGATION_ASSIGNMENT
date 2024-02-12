@@ -29,7 +29,7 @@ class _HomepageState extends State<Homepage> {
       key: _scaffoldKey, 
       appBar: AppBar(
         title: Text(
-          'Home',
+          'Mail App',
           style: TextStyle(color: Colors.white),
         ),
         backgroundColor: Colors.black,
@@ -163,7 +163,7 @@ class HomePageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text('Home Page'),
+      child: Text('Home', style: TextStyle(fontSize: 30)),
     );
   }
 }
