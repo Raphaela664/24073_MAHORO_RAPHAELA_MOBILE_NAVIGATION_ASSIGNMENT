@@ -20,27 +20,41 @@ class _HomepageState extends State<Homepage> {
           },
         ),
       ),
-      bottomNavigationBar: GNav(
-        gap: 8,
-        tabs: const [
-          GButton(
-            icon: Icons.home,
-            text: 'Home',
+      bottomNavigationBar: Container(
+        color: Colors.black,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 15.0,
+            vertical: 20
           ),
-          GButton(
-            icon: Icons.search,
-            text: 'Search',
+          child: GNav(
+            backgroundColor: Colors.black,
+            color: Colors.white,
+            activeColor:Colors.white,
+            tabBackgroundColor: Colors.grey.shade800 ,
+            gap: 8,
+            padding: EdgeInsets.all(16),
+            tabs: const [
+              GButton(
+                icon: Icons.home,
+                text: 'Home',
+              ),
+              GButton(
+                icon: Icons.search,
+                text: 'Search',
+                ),
+              GButton(
+                icon: Icons.inbox,
+                text: 'Inbox',
+                ),
+              GButton(
+                icon: Icons.notifications,
+                text: 'Notifications',
+                ),
+            ]
             ),
-          GButton(
-            icon: Icons.inbox,
-            text: 'Inbox',
-            ),
-          GButton(
-            icon: Icons.notifications,
-            text: 'Notifications',
-            ),
-        ]
         ),
+      ),
     );
   }
 }
