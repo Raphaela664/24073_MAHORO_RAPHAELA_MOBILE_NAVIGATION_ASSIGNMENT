@@ -1,19 +1,22 @@
-import 'package:assignment_3/authentication/signup_page.dart';
+import 'package:assignment_3/authentication/login_page.dart';
 import 'package:assignment_3/components/button.dart';
 import 'package:assignment_3/components/square_tile.dart';
 import 'package:assignment_3/components/textfield.dart';
 import 'package:flutter/material.dart';
 
+class signupPage extends StatelessWidget {
+  signupPage({super.key});
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
 
-  // text editing controllers
   final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
+ 
+
 
   // sign user in method
-  void signUserIn() {}
+  void signUserUp() {}
+
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +27,6 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              
 
               // logo
               const Icon(
@@ -34,9 +36,9 @@ class LoginPage extends StatelessWidget {
 
               const SizedBox(height: 10),
 
-              // welcome back, you've been missed!
+              // Create account
               Text(
-                'Welcome back you\'ve been missed!',
+                'Create Account',
                 style: TextStyle(
                   color: Colors.grey[700],
                   fontSize: 16,
@@ -44,6 +46,13 @@ class LoginPage extends StatelessWidget {
               ),
 
               const SizedBox(height: 10),
+              // email textfield
+              Text_field(
+                controller: emailController,
+                hintText: 'email',
+                obscureText: false,
+              ),
+              const SizedBox(height: 7),
 
               // username textfield
               Text_field(
@@ -60,29 +69,16 @@ class LoginPage extends StatelessWidget {
                 hintText: 'Password',
                 obscureText: true,
               ),
+              
+          
 
-              const SizedBox(height: 7),
-
-              // forgot password?
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      'Forgot Password?',
-                      style: TextStyle(color: Colors.grey[600]),
-                    ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 10),
+              const SizedBox(height: 15),
 
               // sign in button
               MyButton(
-                onTap: signUserIn,
-                buttonText: 'Sign In',
+                onTap: signUserUp,
+                buttonText: 'Sign Up',
+                
               ),
 
               const SizedBox(height: 15),
@@ -134,23 +130,26 @@ class LoginPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Not a member?',
+                    'Already have an account?',
                     style: TextStyle(color: Colors.grey[700]),
+                    
                   ),
                   const SizedBox(width: 4),
                   GestureDetector(
                     onTap: (){
                       Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => signupPage()),
+                      MaterialPageRoute(builder: (context) => LoginPage()),
                     );
                     },
-                   child : const Text(
-                    'Register now',
+                    child: Text(
+                    'Login',
                     style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.bold,
                     ),
+                  
+                    
                   ),
                   )
                   
@@ -163,6 +162,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-
-
-

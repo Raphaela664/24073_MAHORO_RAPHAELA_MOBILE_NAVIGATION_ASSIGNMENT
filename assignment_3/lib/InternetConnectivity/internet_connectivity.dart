@@ -22,16 +22,9 @@ class _internet_connectivityState extends State<internet_connectivity> {
           builder: (context, AsyncSnapshot<ConnectivityResult> snapshot){
             print(snapshot.toString());
             if(snapshot.hasData){
-              ConnectivityResult? result = snapshot.data;
-              if(result == ConnectivityResult.mobile){
-                return connected('Mobile');
-              } else if(result == ConnectivityResult.mobile){
-                return connected('WIFI');
-              } else {
-                return noInternet();
-              }
-            }else{
               return loading();
+            }else{
+              return noInternet();
             }
         
 
@@ -81,15 +74,6 @@ Widget noInternet(){
       Container(
         child: const Text("Check your connection"),
       ),
-      ElevatedButton(
-        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.green),
-         ),
-        onPressed: () async{
-          ConnectivityResult result = await Connectivity().checkConnectivity();
-          print(result.toString());
-        }, 
-        child: const Text("Refresh")
-      )
       
     ],
   );

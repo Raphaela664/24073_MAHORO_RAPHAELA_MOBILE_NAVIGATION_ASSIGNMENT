@@ -47,7 +47,7 @@ class _CalculatorViewState extends State<CalculatorView> {
             .map(
               (value) => SizedBox(
                 width:screenSize.width/4,
-                height:value == (value == Buttons.dotSign || value == Buttons.equalSign)?screenSize.width/4:screenSize.width/5,
+                height:value == (value == Buttons.dotSign || value == Buttons.equalSign)?screenSize.width/3:screenSize.width/5,
                 child: createButton(value))
               )
               .toList(),

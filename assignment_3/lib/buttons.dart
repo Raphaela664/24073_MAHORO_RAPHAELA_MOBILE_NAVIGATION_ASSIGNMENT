@@ -23,21 +23,22 @@ class Buttons {
     clr,
     per,
     multiply,
-    n7,
-    n8,
-    n9,
     divide,
-    n4,
-    n5,
-    n6,
+    n9,
+    n8,
+    n7,
     subtract,
-    n1,
-    n2,
-    n3,
+    n6,
+    n5,
+    n4,
     add,
+    n3, 
+    n2,
+    n1,
+    equalSign,
     n0,
     dotSign,
-    equalSign
+    
   ];
 
 

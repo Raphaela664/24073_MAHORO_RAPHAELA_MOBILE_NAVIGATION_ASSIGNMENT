@@ -1,7 +1,10 @@
 import 'package:assignment_3/CalculatorView.dart';
 import 'package:assignment_3/authentication/login_page.dart';
+import 'package:assignment_3/provider/theme.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:provider/provider.dart';
 import 'InternetConnectivity/internet_connectivity.dart';
 import 'Inbox.dart';
 import 'Notifications.dart';
@@ -20,8 +23,6 @@ class _HomepageState extends State<Homepage> {
 
   final List<Widget> _pages = [
     LoginPage(),
-    internet_connectivity(),
-    HomePageWidget(),
     CalculatorView(),
     InboxPageWidget(),
     NotificationsPageWidget(),
@@ -43,7 +44,20 @@ class _HomepageState extends State<Homepage> {
           onPressed: () {
             _scaffoldKey.currentState?.openDrawer();
           },
+          
         ),
+        actions:<Widget> [
+          IconButton(
+             icon: Icon(Icons.brightness_6),
+            color: Colors.white,
+            onPressed: (){
+              ThemeProvider themeProvider = Provider.of<ThemeProvider> (context, listen: false);
+              themeProvider.swaTheme();
+
+            },
+          )
+         
+        ],
       ),
       drawer: Drawer(
         child: ListView(
@@ -83,8 +97,8 @@ class _HomepageState extends State<Homepage> {
               onTap: () {
                 _selectPage(1);
               },
-              leading: Icon(Icons.search, size: 26, color: Colors.black),
-              title: Text('search', style: TextStyle(fontSize: 26)),
+              leading: Icon(Icons.calculate, size: 26, color: Colors.black),
+              title: Text('calculate', style: TextStyle(fontSize: 26)),
             ),
             ListTile(
               onTap: () {
@@ -110,7 +124,24 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
   
-      body: _pages[_selectedIndex],
+  //    body: _pages[_selectedIndex],
+   body: StreamBuilder<ConnectivityResult>(
+        stream: Connectivity().onConnectivityChanged,
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            ConnectivityResult result = snapshot.data!;
+            if (result == ConnectivityResult.none) {
+              return  internet_connectivity();
+            } else {
+              internet_connectivity();
+              return _pages[_selectedIndex];
+            }
+          } else {
+            // You can display a loading spinner here if needed
+            return CircularProgressIndicator();
+          }
+        },
+      ),
       
       bottomNavigationBar: Container(
         color: Colors.black,
@@ -129,8 +160,8 @@ class _HomepageState extends State<Homepage> {
                 text: 'Home',
               ),
               GButton(
-                icon: Icons.search,
-                text: 'Search',
+                icon: Icons.calculate,
+                text: 'Calc',
               ),
               GButton(
                 icon: Icons.inbox,
@@ -171,4 +202,5 @@ class HomePageWidget extends StatelessWidget {
     );
   }
 }
+
 
